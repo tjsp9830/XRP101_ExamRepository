@@ -12,4 +12,21 @@
 제시된 소스코드에서 문제가 발생하는 `원인을 모두 서술`하시오.
 
 ## 답안
-- 
+- Awake 단계에서 SetCubePosition()을 실행시키기 위한 _cubeController가 초기화되지 않았다.     
+    정확히는 _cubeController가 초기화되긴 하지만, Start 단계에서 진행되므로 순서가 맞지 않는다.     
+    (유니티 실행주기 순서에 의해) 초기화 이전에 세팅을 시도하는 행위가 되어 Null 오류가 뜬다.
+    > 따라서 Awake와 Start안의 내용을 서로 바꿔주어 Null 오류를 해결했다.
+
+
+- 큐브 생성시 위치가 3,0,3이 아닌 0,0,0으로 생성되는 이유는 프리팹 생성시 값이 0,0,0이었기 때문이고,    
+    이후 소스코드에서 변경해 준 값이 제대로 적용되지 않았기 때문이다.        
+    > CreateCube()함수에서는 큐브를 생성하는것 까지만 담당할 수 있게     
+        _cubeSetPoint = _cubeController.SetPoint; 내용을 제외하고     
+        해당 내용을 SetCubePosition()함수로 옮겼다.    
+    >  또한 등호의 앞뒤를 바꾸어 _cubeController.SetPoint = _cubeSetPoint; 로 만들었다.
+    
+    큐브 매니저가 가진 Vector3 변수에 큐브의 위치 값을 넣는것이 아니라,     
+    큐브의 위치에 매니저에서 바꿔줄 값을 직접 넣어주어서 3,0,3으로 생성되게 하였다.
+
+- 여기서 프로퍼티의 접근제한자 때문에 값을 변경할수 없어 SetPoint { get; private set; }의 private를 없앴다.
+

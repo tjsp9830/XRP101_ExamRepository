@@ -9,7 +9,7 @@ public class BulletController : PooledBehaviour
     [SerializeField] private float _deactivateTime;
     [SerializeField] private int _damageValue;
 
-    private Rigidbody _rigidbody;
+    [SerializeField] private Rigidbody _rigidbody;
     private WaitForSeconds _wait;
     
     private void Awake()

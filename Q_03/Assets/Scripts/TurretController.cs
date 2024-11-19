@@ -10,7 +10,7 @@ public class TurretController : MonoBehaviour
     [SerializeField] private float _fireCooltime;
     
     private Coroutine _coroutine;
-    private WaitForSeconds _wait;
+    private WaitForSecondsRealtime _wait;
 
     private void Awake()
     {
@@ -25,10 +25,16 @@ public class TurretController : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+            StopCoroutine(_coroutine);
+    }
+
     private void Init()
     {
         _coroutine = null;
-        _wait = new WaitForSeconds(_fireCooltime);
+        _wait = new WaitForSecondsRealtime(_fireCooltime);
         _bulletPool.CreatePool();
     }
 
@@ -42,8 +48,8 @@ public class TurretController : MonoBehaviour
                 target.position.x,
                 0,
                 target.position.z)
-            );
-            
+            );            
+
             PooledBehaviour bullet = _bulletPool.TakeFromPool();
             bullet.transform.position = _muzzlePoint.position;
             bullet.OnTaken(target);

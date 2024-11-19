@@ -21,4 +21,10 @@
 제시된 프로젝트에서 발생하는 `문제들을 모두 서술`하고 올바르게 동작하도록 `소스코드를 개선`하시오.
 
 ## 답안
-- 
+- 문제1: 터렛이 트리거에서 플레이어를 인지하지 못한다
+    > 플레이어 프리팹에 RigidBody를 달아주고 중력을 끈뒤 키네마틱으로 설정했다.
+
+- 트리거는 인지하지만 플레이어가 충돌 영역에 들어왔다 나갔다를 빠르게 반복하면 총알이 1.5초보다 빠르게 발사된다.    
+    > WaitForSeconds를 WaitForSecondsRealtime로 바꿔주었다.    
+    > private void OnTriggerExit()에 StopCoroutine(_coroutine);을 작성했다.
+

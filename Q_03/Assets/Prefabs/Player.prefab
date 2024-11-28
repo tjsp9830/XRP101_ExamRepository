@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8254210140490314266}
-  - component: {fileID: 6604936509990062795}
   - component: {fileID: -117981830401906550}
   - component: {fileID: 117012504483757229}
   m_Layer: 0
@@ -35,19 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6604936509990062795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8254210140490314265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 013c59543c7764860abf7a37668cbfe0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Hp>k__BackingField: 15
 --- !u!82 &-117981830401906550
 AudioSource:
   m_ObjectHideFlags: 0
@@ -172,6 +158,7 @@ GameObject:
   - component: {fileID: 8254210141019104518}
   - component: {fileID: 8254210141019104517}
   - component: {fileID: 8254210141019104516}
+  - component: {fileID: 3246787975014280511}
   m_Layer: 0
   m_Name: Body
   m_TagString: Player
@@ -258,3 +245,16 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3246787975014280511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8254210141019104514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 013c59543c7764860abf7a37668cbfe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Hp>k__BackingField: 15

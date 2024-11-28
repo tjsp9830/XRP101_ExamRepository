@@ -11,7 +11,9 @@ public class BulletController : PooledBehaviour
 
     [SerializeField] private Rigidbody _rigidbody;
     private WaitForSeconds _wait;
-    
+
+    [SerializeField] PlayerController _player;
+
     private void Awake()
     {
         Init();
@@ -24,11 +26,11 @@ public class BulletController : PooledBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
         if (other.CompareTag("Player"))
         {
-            other
-                .GetComponent<PlayerController>()
-                .TakeHit(_damageValue);
+            _player = other.GetComponent<PlayerController>();
+            _player.TakeHit(_damageValue);
         }
     }
 

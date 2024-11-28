@@ -8,7 +8,9 @@ public class PlayerController : MonoBehaviour
     [field: Range(0, 100)]
     public int Hp { get; private set; }
 
+    private BulletController bulletCtrl;
     private AudioSource _audio;
+    private AudioClip _clip;
 
     private void Awake()
     {
@@ -18,8 +20,17 @@ public class PlayerController : MonoBehaviour
     private void Init()
     {
         _audio = GetComponent<AudioSource>();
+        _clip = _audio.clip;
     }
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Bullet")
+        {
+            bulletCtrl = GetComponent<BulletController>();
+        }
+    }
+
     public void TakeHit(int damage)
     {
         Hp -= damage;

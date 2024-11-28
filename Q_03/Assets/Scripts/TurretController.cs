@@ -10,7 +10,7 @@ public class TurretController : MonoBehaviour
     [SerializeField] private float _fireCooltime;
     
     private Coroutine _coroutine;
-    private WaitForSecondsRealtime _wait;
+    private WaitForSeconds _wait;
 
     private void Awake()
     {
@@ -21,20 +21,25 @@ public class TurretController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("플레이어 감지");
             Fire(other.transform);
         }
     }
 
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
+        {
+            Debug.Log("플레이어 놓침");
             StopCoroutine(_coroutine);
+        }
     }
 
     private void Init()
     {
         _coroutine = null;
-        _wait = new WaitForSecondsRealtime(_fireCooltime);
+        _wait = new WaitForSeconds(_fireCooltime);
         _bulletPool.CreatePool();
     }
 
@@ -42,18 +47,19 @@ public class TurretController : MonoBehaviour
     {
         while (true)
         {
+            Debug.Log("코루틴 시작");
             yield return _wait;
-            
+
             transform.rotation = Quaternion.LookRotation(new Vector3(
                 target.position.x,
                 0,
                 target.position.z)
-            );            
-
+            );
+            
             PooledBehaviour bullet = _bulletPool.TakeFromPool();
             bullet.transform.position = _muzzlePoint.position;
             bullet.OnTaken(target);
-            
+            Debug.Log("총알쏘기 끝");
         }
     }
 

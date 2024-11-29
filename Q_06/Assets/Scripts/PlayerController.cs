@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.UI.Image;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _verticalRotateRange;
     [SerializeField] private float _rotateSpeed;
     [SerializeField] private float _moveSpeed;
+    [SerializeField] private Camera _playerCam;
 
     private float _verticalRotation = 0f;
 
@@ -28,7 +30,7 @@ public class PlayerController : MonoBehaviour
     {
         _gun = GetComponent<Gun>();
         
-        CameraController cam = Camera.main.GetComponent<CameraController>();
+        CameraController cam = _playerCam.GetComponent<CameraController>();
         cam.FollowTarget = _muzzlePoint;
 
         Cursor.visible = false;
@@ -38,7 +40,7 @@ public class PlayerController : MonoBehaviour
     private void Fire()
     {
         if (Input.GetMouseButtonDown(0))
-        {
+        {            
             _gun.Fire(_muzzlePoint);    
         }
     }

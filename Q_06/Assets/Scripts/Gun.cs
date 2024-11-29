@@ -10,7 +10,8 @@ public class Gun : MonoBehaviour
     
     public void Fire(Transform origin)
     {
-        Ray ray = new(origin.position, Vector3.forward);
+        Debug.DrawRay(origin.position, origin.forward, Color.red, _range);
+        Ray ray = new(origin.position, origin.forward);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, _range, _targetLayer))

@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : SingletonBehaviour<GameManager>
 {
-    public float Score { get; set; }
+    [SerializeField] private float _score;
+    public float Score { get { return _score; } set { } }
 
     private void Awake()
     {
@@ -16,6 +17,11 @@ public class GameManager : SingletonBehaviour<GameManager>
     public void Pause()
     {
         Time.timeScale = 0f;
+    }
+    
+    public void UnPause()
+    {
+        Time.timeScale = 1f;
     }
 
     public void LoadScene(int buildIndex)

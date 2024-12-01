@@ -20,11 +20,13 @@
 ## 답안
 - 공격이 끝난 이후, AttackState스크립트에서 null 참조 오류가 떴다.
   > 진행중이던 코루틴에서 공격 대상을 한번 더 찾았으나 공격 대상이 없어서 null오류가 났다고 판단했다.    
-  > 따라서 Attack()안의 foreach문에 if (damagable == null) return; 코드를 넣어서 해결했다.    
+  > 따라서 Attack()안의 foreach문에 if (damagable == null) return; 코드를 넣어서 해결했다.     
+  ----> ? 키워드로 Null체크가 가능하다는 점을 상기한다..   
 
 - null참조 오류는 해결됐으나, 스택 오버플로우가 발생했다.  
   > Exit()에서 ChangeState()를 호출해서 ChangeState()도 Exit()를 호출했기 때문에 발생한 오류이다.       
-  위의 if문 안으로 ChangeState()를 옮겨주었다.    
+  위의 if문 안으로 ChangeState()를 옮겨주었다.      
+  ----> Exit()자리에 ChangeState를 바로 호출해주어 해결하였다.
 
 - 문제가 발생하지 않도록 코루틴 변수를 만들어서 Exit()에서 StopCoroutine(코루틴변수); 해주었다.
   > 공격이 끝난 뒤, IDamageable을 가진 객체를 모두 없애고 나면 정상적으로 Idle상태로 전환되었다.
